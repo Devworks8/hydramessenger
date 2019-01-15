@@ -8,10 +8,9 @@ import zmq
 from zmq.auth.asyncio import AsyncioAuthenticator
 from zmq.eventloop.zmqstream import ZMQStream
 
-
-from hydramessenger.HydraMessenger.configure import CfgManager
-from hydramessenger.HydraMessenger.MessageHeaders.msg_command import *
-from hydramessenger.HydraMessenger.Utils.key_monkey import *
+from HydraPMS.Utils.configure import CfgManager
+from HydraPMS.MessageHeaders.msg_command import CommandMessage
+from HydraPMS.Utils.key_monkey import KeyMonkey
 
 
 class HydraProxy(Process):
@@ -191,6 +190,3 @@ def main():
     messenger_proc.start()
     processes.append(messenger_proc)
 
-
-if __name__ == '__main__':
-    main()

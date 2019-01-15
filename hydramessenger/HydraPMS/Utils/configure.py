@@ -7,8 +7,8 @@ try:
 except ImportError:
     from yaml import Loader, Dumper
 
-from hydramessenger.HydraMessenger.Utils.decorators import *
-from hydramessenger.HydraMessenger.Utils.inflate_dict import inflate_dict
+from HydraPMS.Utils.decorators import *
+from HydraPMS.Utils.inflate_dict import inflate_dict
 
 
 # TODO: Finish error handling.

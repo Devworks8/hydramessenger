@@ -1,4 +1,4 @@
-from hydramessenger.HydraMessenger.MessageHeaders.msg_core import *
+from HydraPMS.MessageHeaders.msg_core import *
 
 
 class CommandMessage(MultiPartMessage):
