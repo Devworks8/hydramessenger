@@ -19,6 +19,9 @@ setuptools.setup(
                       "PyYAML",
                       "pyzmq",
                       "tornado",
+                      "cmd2",
+                      "cmd2_submenu",
+                      'IPython',
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

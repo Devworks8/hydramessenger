@@ -10,6 +10,7 @@ from zmq.eventloop.zmqstream import ZMQStream
 
 from HydraPMS.Utils.configure import CfgManager
 from HydraPMS.MessageHeaders.msg_command import CommandMessage
+from HydraPMS.Shell.shell import CLIShell
 from HydraPMS.Utils.key_monkey import KeyMonkey
 
 
@@ -95,15 +96,8 @@ class HydraProxy(Process):
         backend.bind("tcp://{host}:{port}".format(host=self.backend_host,
                                                   port=self.backend_port))
 
-        print("Proxy starting up\n")
-
-        try:
-            zmq.proxy(frontend, backend)
-            print("Proxy started")
-
-        except Exception as e:
-            print("ERROR: Proxy failed to start. : {}".format(e))
-            exit(1)
+        print("Proxy started\n")
+        zmq.proxy(frontend, backend)
 
 
 class HydraMessenger(Process):
@@ -129,7 +123,10 @@ class HydraMessenger(Process):
 
         worker.connect("tcp://{host}:{port}".format(host=self.backend_host, port=self.backend_port))
 
+        print("Messenger started\n")
+
         results = MessengerWorker(worker.recv_multipart())
+
         worker.send_multipart(results)
         print("Worker %s sending results" % self.identity)
         print(results)
@@ -190,3 +187,8 @@ def main():
     messenger_proc.start()
     processes.append(messenger_proc)
 
+    # Start the shell
+    CLIShell(settings).cmdloop()
+
+if __name__ == '__main__':
+    main()
